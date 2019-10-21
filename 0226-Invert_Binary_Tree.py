@@ -9,9 +9,5 @@ class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
         if not root:
             return None
-        tree = TreeNode(root.val)
-        if root.right:
-            tree.left = self.invertTree(root.right)
-        if root.left:
-            tree.right = self.invertTree(root.left)
-        return tree
+        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        return root
